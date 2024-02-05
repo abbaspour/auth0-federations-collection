@@ -1,0 +1,9 @@
+.idea
+*.pem
+*.x5c
+terraform.tfstate
+terraform.tfstate.backup
+terraform.auto.tfvars
+.terraform.lock.hcl
+.terraform
+*.plan
