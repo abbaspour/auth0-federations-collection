@@ -9,11 +9,6 @@ variable "okta_tf_client_id" {
   description = "Terraform client_id"
 }
 
-variable "okta_app_id" {
-  type        = string
-  description = "okta app id"
-}
-
 ## auth0
 variable "auth0_domain" {
   type = string
