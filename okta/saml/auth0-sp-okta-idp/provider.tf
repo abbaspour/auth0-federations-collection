@@ -8,14 +8,6 @@ terraform {
       source  = "auth0/auth0"
       version = "~> 1.1"
     }
-    http = {
-      source  = "hashicorp/http"
-      version = "3.4.1"
-    }
-    jq = {
-      source = "massdriver-cloud/jq"
-      version = "0.2.1"
-    }
   }
 }
 
@@ -23,6 +15,7 @@ provider "okta" {
   org_name    = var.okta_org_name
   base_url    = "okta.com"
   client_id   = "0oa3jqopq7CejpxBl3l7"
+  #client_id   = var.okta_client_id
   private_key = "../../converted-tf-private-key.pem"
   scopes      = [
     "okta.groups.manage",
