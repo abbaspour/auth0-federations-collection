@@ -24,3 +24,37 @@ resource "okta_idp_saml" "auth0" {
   request_signature_scope  = "REQUEST"
   response_signature_scope = "ANY"
 }
+
+// All Okta orgs contain only one IdP Discovery Policy
+data "okta_policy" "idp_discovery_policy" {
+  name = "Idp Discovery Policy"
+  type = "IDP_DISCOVERY"
+}
+
+resource "okta_policy_rule_idp_discovery" "auth0-saml-idp-routing" {
+  policy_id                  = data.okta_policy.idp_discovery_policy.id
+  name                      = "jp-saml"
+  idp_id                    = okta_idp_saml.auth0.id
+  idp_type                  = "Saml2"
+  network_connection        = "ANYWHERE"
+  priority                  = 1
+  status                    = "ACTIVE"
+/*
+  user_identifier_type      = "ATTRIBUTE"
+  user_identifier_attribute = "company"
+*/
+
+  app_include {
+    id   = data.okta_app.dashboard.id
+    type = "APP"
+  }
+
+  user_identifier_patterns {
+    match_type = "SUFFIX"
+    value      = "example.com"
+  }
+}
+
+data "okta_app" "dashboard" {
+  label = "Okta Dashboard"
+}

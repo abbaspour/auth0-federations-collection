@@ -4,10 +4,23 @@ variable "okta_org_name" {
   description = "Okta org name"
 }
 
+variable "okta_base_url" {
+  type        = string
+  description = "okta.com | oktapreview.com"
+  default = "okta.com"
+}
+
+variable "okta_api_token" {
+  type = string
+  sensitive = true
+}
+
+/*
 variable "okta_tf_client_id" {
   type        = string
   description = "Terraform client_id"
 }
+*/
 
 ## auth0
 variable "auth0_domain" {

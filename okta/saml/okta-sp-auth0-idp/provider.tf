@@ -13,16 +13,18 @@ terraform {
       version = "3.4.1"
     }
     jq = {
-      source = "massdriver-cloud/jq"
+      source  = "massdriver-cloud/jq"
       version = "0.2.1"
     }
   }
 }
 
 provider "okta" {
-  org_name    = var.okta_org_name
-  base_url    = "okta.com"
-  client_id   = "0oa3jqopq7CejpxBl3l7"
+  org_name  = var.okta_org_name
+  base_url  = var.okta_base_url
+  api_token = var.okta_api_token
+  /*
+  client_id   = var.okta_tf_client_id
   private_key = "../../converted-tf-private-key.pem"
   scopes      = [
     "okta.groups.manage",
@@ -34,6 +36,7 @@ provider "okta" {
     "okta.profileMappings.manage"
   ]
   log_level = 1
+  */
 }
 
 provider "auth0" {

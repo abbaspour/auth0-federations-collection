@@ -13,6 +13,9 @@ Admin > Security > Identity Providers > Add > SAML 2.0 IdP >
 
 
 ## Auth0 as IdP
+
+> :warning: User profile in Auth0 should have `email`, `given_name` and `family_name` attributes
+
 Manage > Applications > SAML IdP App > Addons > SAML2 Web App > Settings
 
 * ACS: `https://{org_name}.okta.com/sso/saml2/${okta-idp-id}`
