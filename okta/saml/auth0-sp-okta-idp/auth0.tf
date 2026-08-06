@@ -20,6 +20,7 @@ resource "auth0_connection" "okta-saml" {
     set_user_root_attributes = "on_each_login"
 
     idp_initiated {
+      enabled                = true
       client_id              = data.auth0_client.JWT-io.client_id
       client_protocol        = "oidc"
       client_authorize_query = "type=id_token&timeout=30"
