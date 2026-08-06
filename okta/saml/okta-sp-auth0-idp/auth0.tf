@@ -1,6 +1,7 @@
 locals {
   idp_id = "0oaea5zr2emRcbsqM1d7" # copy ${okta_idp_saml.auth0.id} here to avoid cyclic dependency
 }
+
 resource "auth0_client" "idp" {
   name = "Okta SAML IdP"
 

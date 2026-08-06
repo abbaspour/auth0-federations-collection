@@ -16,6 +16,7 @@ resource "auth0_connection" "okta-saml" {
     signature_algorithm = "rsa-sha256"
     digest_algorithm    = "sha256"
     icon_url            = "https://saml.provider/assets/logo.png"
+    metadata_xml = ""
     metadata_url        = "https://amin.okta.com/app/exk3ns1r6dQbe5SHr3l7/sso/saml/metadata"
 
     idp_initiated {
