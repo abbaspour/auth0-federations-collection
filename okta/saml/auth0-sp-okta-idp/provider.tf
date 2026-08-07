@@ -2,11 +2,11 @@ terraform {
   required_providers {
     okta = {
       source  = "okta/okta"
-      version = "~> 4.6.3"
+      version = "~> 6"
     }
     auth0 = {
       source  = "auth0/auth0"
-      version = "~> 1.1"
+      version = "~> 1"
     }
   }
 }
