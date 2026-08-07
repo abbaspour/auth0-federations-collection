@@ -38,3 +38,29 @@ resource "auth0_connection_clients" "SAML-app-assignment" {
   connection_id   = auth0_connection.okta-saml.id
   enabled_clients = [data.auth0_client.JWT-io.client_id]
 }
+
+resource "auth0_connection_scim_configuration" "okta-saml-scim" {
+  connection_id = auth0_connection.okta-saml.id
+}
+
+resource "auth0_connection_scim_token" "okta-saml-scim" {
+  connection_id = auth0_connection.okta-saml.id
+  scopes = [
+    "get:users",
+    "post:users",
+    "put:users",
+  ]
+
+  depends_on = [auth0_connection_scim_configuration.okta-saml-scim]
+}
+
+output "scim_endpoint_url" {
+  description = "SCIM 2.0 base URL to paste into Okta's Provisioning > Integration settings"
+  value       = "https://${var.auth0_domain}/scim/v2/connections/${auth0_connection.okta-saml.id}"
+}
+
+output "scim_bearer_token" {
+  description = "SCIM bearer token to paste into Okta's Provisioning > Integration settings"
+  value       = auth0_connection_scim_token.okta-saml-scim.token
+  sensitive   = true
+}

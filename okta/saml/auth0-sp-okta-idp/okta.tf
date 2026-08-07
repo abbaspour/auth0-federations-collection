@@ -28,3 +28,10 @@ resource "okta_app_group_assignment" "everyone-to-saml-assignment" {
   app_id   = okta_app_saml.amin-jp.id
   group_id = data.okta_group.everyone.id
 }
+
+# SCIM provisioning (Okta -> Auth0) is not exposed by the okta/okta Terraform
+# provider for custom SAML apps: `okta_app_saml` only reports `features` as
+# read-only, with no writable SCIM connector fields. Enable it manually in
+# the Okta Admin Console on this app using the outputs from auth0.tf
+# (`terraform output scim_endpoint_url` / `terraform output -raw scim_bearer_token`).
+# See readme.md for the exact steps.
